@@ -2,7 +2,7 @@
 
 (function () {
     const width = 600, height = 400;
-    const fps = 12;
+    const fps = 60;
     const dt = 1000 / fps;
 
     let canvas;
@@ -29,14 +29,12 @@
     function update() {
         requestAnimationFrame(update);
         CtxUtil.clear(ctx);
-
-
+        
+        guitar.updateStrings(mouse);
         guitar.draw(ctx);
     }
 
     function fixedUpdate() {
-
+        
     }
-
-    
 })();
