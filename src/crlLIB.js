@@ -346,26 +346,51 @@
             getRandom(min, max) {
                 return Math.random() * (max - min) + min;
             },
-    
+
             getRandomInt(min, max) {
                 min = Math.floor(min);
                 max = Math.floor(max);
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             },
-    
+
             getRandomUnsignedByte() {
                 return this.getRandomInt(0, 255);
             },
-    
+
             getRandomColor() {
                 return `rgb(${this.getRandomUnsignedByte()}, ${this.getRandomUnsignedByte()}, ${this.getRandomUnsignedByte()})`;
             },
-    
+
             getRandomColorA(alpha = undefined) {
                 if (alpha == undefined)
                     return `rgba(${this.getRandomUnsignedByte()}, ${this.getRandomUnsignedByte()}, ${this.getRandomUnsignedByte()}, ${this.getRandom(0, 1)})`;
                 else
                     return `rgba(${this.getRandomUnsignedByte()}, ${this.getRandomUnsignedByte()}, ${this.getRandomUnsignedByte()}, ${alpha})`;
+            }
+        },
+        CanvasMouseUtil: {
+            getMouseFor: canvas => {
+                let getMouseCanvasCoord = e => {
+                    let rect = e.target.getBoundingClientRect();
+                    let mouseX = e.clientX - rect.x;
+                    let mouseY = e.clientY - rect.y;
+                    return { x: mouseX, y: mouseY };
+                };
+                let mouse = {
+                    pos: { x: 0, y: 0 },
+                    mouseDown: false,
+                };
+                canvas.addEventListener("mousemove", e => {
+                    mouse.pos = getMouseCanvasCoord(e);
+                });
+                canvas.addEventListener("mousedown", e => {
+                    mouse.mouseDown = true;
+                });
+                canvas.addEventListener("mouseup", e => {
+                    mouse.mouseDown = false;
+                });
+
+                return mouse;
             }
         },
         Vec2dUtil: {
@@ -502,11 +527,12 @@
             }
         }
     }
-    
+
     if (window) {
         window["CrlLib"] = CrlLib;
         window["CtxUtil"] = CrlLib.CtxUtil;
         window["RandUtil"] = CrlLib.RandUtil;
+        window["CanvasMouseUtil"] = CrlLib.CanvasMouseUtil;
         window["Vec2dUtil"] = CrlLib.Vec2dUtil;
         window["Vector2d"] = CrlLib.Vec2dUtil.Vector2d;
         window["Ray2d"] = CrlLib.Vec2dUtil.Ray2d;
