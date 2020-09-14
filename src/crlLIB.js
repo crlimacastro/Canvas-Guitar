@@ -525,6 +525,10 @@
             degToRad(degrees) {
                 return degrees * Math.PI / 180;
             }
+        },
+        // https://stackoverflow.com/questions/5649803/remap-or-map-function-in-javascript
+        map_range(value, min1, max1, min2, max2) {
+            return min2 + (max2 - min2) * (value - min1) / (max1 - min1);
         }
     }
 

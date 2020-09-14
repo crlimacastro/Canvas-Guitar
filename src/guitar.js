@@ -7,8 +7,12 @@
     const STRING_LENGTH = 500;
     const STRING_WIDTH = 2;
 
-    const PLUCK_START_DISTANCE = 10;
+    const PLUCK_START_DISTANCE = 3;
     const MAX_PLUCK_DISTANCE = 20;
+
+    const SINE_WAVE_DETAIL = 100;
+    const MAX_WAVE_AMPLITUDE = 10;
+    const MAX_WAVE_DURATION = 1000;
 
     const stringState = {
         RESTING: 0,
@@ -38,10 +42,13 @@
                 if (maxDistanceReached(mouse))
                     this.state = stringState.RESTING;
             }
-            else
-                this.pluckPos = null;
-
-
+        }
+        pluck(distance) {
+            this.state = stringState.PLUCKING;
+            const amplitude = CrlLib.map_range(distance, 0, MAX_PLUCK_DISTANCE, 0, MAX_WAVE_AMPLITUDE);
+            const duration =  CrlLib.map_range(distance, 0, MAX_PLUCK_DISTANCE, 0, MAX_WAVE_DURATION);
+            setTimeout(_ => {this.state = stringState.RESTING}, duration);
+            // TODO
         }
         draw(ctx) {
             switch (this.state) {
@@ -53,6 +60,13 @@
                     CtxUtil.strokeLine(ctx, this.pluckPos.x, this.pluckPos.y, this.endPos.x, this.endPos.y, "black", STRING_WIDTH);
                     break;
                 case stringState.WAVING:
+                    // Draw rolling shutter effect
+                    // ctx.save();
+                    // for (let i = 0; i < array.length; i++) {
+                    //     const element = array[i];
+                        
+                    // }
+                    // ctx.restore();
                     break;
             }
         }
