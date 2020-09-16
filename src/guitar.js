@@ -16,8 +16,8 @@
     const MAX_WAVE_AMPLITUDE = 30;
     const MAX_WAVE_DURATION = 5000;
     const WAVE_PERIOD_LENGTH = 80;
-    const WAVE_DECREASE_RATE = 0.01;
-    const WAVE_SHIFT_SPEED = 5;
+    const WAVE_DECREASE_RATE = 0.015;
+    const WAVE_SHIFT_SPEED = 7;
     // Make sure string is long enough to translate seamlessly
     const WAVE_END_THETA = 2 * periodCountToTheta(lengthToPeriodCount(STRING_LENGTH, WAVE_PERIOD_LENGTH)) * WAVE_SHIFT_SPEED;
 

@@ -4,7 +4,15 @@
 
 [Discussion Post](#Discussion-Post)
 
-[External Library](#External-Library)
+[Requirements](#Requirements)
+
+[Above and Beyond](#Above-and-Beyond)
+
+[What went right & wrong](#What-went-right-&-what-went-wrong)
+
+[Wishlist of Features](#Wishlist-of-Features)
+
+[Citations](#Citations)
 
 [Log](#Log)
 
@@ -15,9 +23,54 @@ I don't think periodic functions are going to get a lot of love so I want to mak
 
 Planning on adding sound as a stretch goal and for the user to be able to strum different chords.
 
-## External Library
-### Tone.js
+------------------------------------
+
+## Requirements
+
+### A. Overall Theme/Impact
+
+### B. User Experience
+
+### C. Media
+
+### D. Code
+
+------------------------------------
+
+## Above and Beyond
+
+------------------------------------
+
+## What went right & what went wrong
+
+------------------------------------
+
+## Wishlist of Features
+
+------------------------------------
+
+## Citations
+Tone.js (External sound library) - 
 https://tonejs.github.io/
+
+Morning Country Ambience with Birds by freesfx.co - 
+https://www.freesfx.co.uk/sfx/morning
+
+"Outdoor Nighttime Ambience.wav" by TaXMaNFoReVeR of freesound.org - 
+https://freesound.org/people/TaXMaNFoReVeR/sounds/325426/
+
+"Rain, Moderate, B.wav" by InspectorJ (www.jshaw.co.uk) of freesound.org - 
+https://freesound.org/people/InspectorJ/sounds/401276/
+
+Range Mapping Function - 
+https://stackoverflow.com/questions/5649803/remap-or-map-function-in-javascript
+```javascript
+        map_range(value, min1, max1, min2, max2) {
+            return min2 + (max2 - min2) * (value - min1) / (max1 - min1);
+        }
+```
+
+------------------------------------
 
 ## Log
 |   Date   | Description                               |
@@ -26,3 +79,4 @@ https://tonejs.github.io/
 |  9/10/20 | Worked on libraries externally            |
 |  9/13/20 | Added libraries                           |
 |  9/14/20 | Created guitar and plucking functionality |
+|  9/15/20 | Implemented rolling shutter effect        |
