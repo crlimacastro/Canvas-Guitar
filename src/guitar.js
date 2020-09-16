@@ -1,4 +1,6 @@
 (function () {
+    "use strict";
+
     const STRING_COUNT = 6;
 
     // String position consts
@@ -28,11 +30,11 @@
     }
 
     class String {
-        constructor(index, startPos, endPos) {
-            this.index = index;
+        constructor(startPos, endPos, width) {
             this.startPos = startPos;
             this.endPos = endPos;
             this.pluckPos = null;
+            this.width = width
             this.state = stringState.RESTING;
 
             // Wave variables
@@ -70,14 +72,14 @@
             // String State Finite State Machine
             switch (this.state) {
                 case stringState.RESTING:
-                    CtxUtil.strokeLine(ctx, this.startPos.x, this.startPos.y, this.endPos.x, this.endPos.y, "black", STRING_WIDTH);
+                    CtxUtil.strokeLine(ctx, this.startPos.x, this.startPos.y, this.endPos.x, this.endPos.y, "black", this.width);
                     break;
                 case stringState.PLUCKING:
-                    CtxUtil.strokeLine(ctx, this.startPos.x, this.startPos.y, this.pluckPos.x, this.pluckPos.y, "black", STRING_WIDTH);
-                    CtxUtil.strokeLine(ctx, this.pluckPos.x, this.pluckPos.y, this.endPos.x, this.endPos.y, "black", STRING_WIDTH);
+                    CtxUtil.strokeLine(ctx, this.startPos.x, this.startPos.y, this.pluckPos.x, this.pluckPos.y, "black", this.width);
+                    CtxUtil.strokeLine(ctx, this.pluckPos.x, this.pluckPos.y, this.endPos.x, this.endPos.y, "black", this.width);
                     break;
                 case stringState.WAVING:
-                    CtxUtil.strokeSin(ctx, this.startPos.x - this.wavePosition, this.startPos.y, this.amplitude, WAVE_PERIOD_LENGTH, WAVE_END_THETA, "black", STRING_WIDTH);
+                    CtxUtil.strokeSin(ctx, this.startPos.x - this.wavePosition, this.startPos.y, this.amplitude, WAVE_PERIOD_LENGTH, WAVE_END_THETA, "black", this.width);
                     break;
             }
         }
@@ -103,10 +105,13 @@
             // Create Strings
             for (let i = 0; i < STRING_COUNT; i++) {
                 this.strings.push(new String(
-                    i,
                     new Vector2d(STRING_START_X, STRING_START_Y + STRING_SPACING * i),
-                    new Vector2d(STRING_START_X + STRING_LENGTH, STRING_START_Y + STRING_SPACING * i)));
+                    new Vector2d(STRING_START_X + STRING_LENGTH, STRING_START_Y + STRING_SPACING * i),
+                    STRING_WIDTH / 3 * (STRING_COUNT - i)));
             }
+        }
+        getStringCount() {
+            return this.strings.length;
         }
         updateStrings(mouse) {
             for (const string of this.strings)

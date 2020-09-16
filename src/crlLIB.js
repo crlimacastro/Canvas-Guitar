@@ -1,6 +1,6 @@
-"use strict";
-
 (function () {
+    "use strict";
+
     let CrlLib = {
         CtxUtil: {
             clear(ctx) {
@@ -359,7 +359,7 @@
                 ctx.stroke();
                 ctx.restore();
             }
-            
+
             // ************************
         },
         RandUtil: {

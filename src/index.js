@@ -1,6 +1,6 @@
-"use strict";
-
 (function () {
+    "use strict";
+
     const width = 600, height = 400;
     const fps = 60;
     const dt = 1000 / fps;
@@ -19,7 +19,7 @@
         canvas.height = height;
         mouse = CanvasMouseUtil.getMouseFor(canvas);
         guitar = new Guitar();
-        
+
 
         // Start updates
         let fixedUpdateInterval = setInterval(fixedUpdate, dt);
@@ -29,11 +29,12 @@
     function update() {
         requestAnimationFrame(update);
         CtxUtil.clear(ctx);
+        Ambience.draw(ctx);
         guitar.updateStrings(mouse);
         guitar.draw(ctx);
     }
 
     function fixedUpdate() {
-        
+
     }
 })();
