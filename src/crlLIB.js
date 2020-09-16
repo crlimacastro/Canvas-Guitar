@@ -339,7 +339,27 @@
                 ctx.strokeStyle = color;
                 ctx.stroke();
                 ctx.restore();
+            },
+
+            strokeSin(ctx, x, y, amplitude, periodLength, endTheta, color = "black", strokeWidth = 1, lineDash = [], lineJoin = "miter") {
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                for (let theta = Math.PI / 2, i = 0; theta < endTheta; theta += Math.PI, i++) {
+                    // X coord in the current period
+                    let iX = x + i * (periodLength / 2);
+                    // Y coord of sin theta in the current period 
+                    let iY = amplitude * Math.sin(theta);
+                    ctx.quadraticCurveTo(iX + (periodLength / 4), y - iY,
+                        iX + (periodLength / 2), y);
+                }
+                ctx.lineWidth = strokeWidth;
+                ctx.setLineDash(lineDash);
+                ctx.strokeStyle = color;
+                ctx.stroke();
+                ctx.restore();
             }
+            
             // ************************
         },
         RandUtil: {
@@ -526,6 +546,8 @@
                 return degrees * Math.PI / 180;
             }
         },
+        // Function for remapping a value from one range of numbers to another
+        // Like the function in Processing
         // https://stackoverflow.com/questions/5649803/remap-or-map-function-in-javascript
         map_range(value, min1, max1, min2, max2) {
             return min2 + (max2 - min2) * (value - min1) / (max1 - min1);

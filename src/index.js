@@ -29,7 +29,6 @@
     function update() {
         requestAnimationFrame(update);
         CtxUtil.clear(ctx);
-        
         guitar.updateStrings(mouse);
         guitar.draw(ctx);
     }
