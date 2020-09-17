@@ -20,7 +20,6 @@
         mouse = CanvasMouseUtil.getMouseFor(canvas);
         guitar = new Guitar();
 
-
         // Start updates
         let fixedUpdateInterval = setInterval(fixedUpdate, dt);
         update();
@@ -38,3 +37,5 @@
 
     }
 })();
+
+let synth = new Tone.PolySynth().toDestination();

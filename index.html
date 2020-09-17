@@ -15,9 +15,10 @@
 
 <body>
     <h1>Canvas Guitar</h1>
-    <canvas></canvas>
+    <canvas id="guitarCanvas"></canvas>
     <p id="description">
-
+        Listen to the calming sounds of nature as you strum your guitar.
+        Change your surroundings at the click of a button.
     </p>
 
     <h2>Instructions</h2>
@@ -27,6 +28,25 @@
         </li>
         <li>
             <p>Pull it far enough or release the left mouse button and it will be plucked.</p>
+        </li>
+        <h3>Keyboard Controls</h3>
+        <li>
+            <p>Left Arrow - Pluck 1st string</p>
+        </li>
+        <li>
+            <p>Down Arrow - Pluck 2nd string</p>
+        </li>
+        <li>
+            <p>Right Arrow - Pluck 3rd string</p>
+        </li>
+        <li>
+            <p>Numpad 4 - Pluck 4th string</p>
+        </li>
+        <li>
+            <p>Numpad 5 - Pluck 5th string</p>
+        </li>
+        <li>
+            <p>Numpad 6 - Pluck 6th string</p>
         </li>
     </ul>
 
@@ -38,7 +58,12 @@
                 <option value="morning" selected>Morning</option>
                 <option value="evening">Evening</option>
                 <option value="rain">Rain</option>
+                <option value="none">None</option>
             </select>
+        </li>
+        <li>
+            <label for="ambienceVolume">Ambience Volume:</label>
+            <input type="range" min="0" max="100" value="90" name="ambienceVolume" id="ambienceVolume" step="2">
         </li>
     </ul>
 </body>
