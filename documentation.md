@@ -81,4 +81,4 @@ https://stackoverflow.com/questions/5649803/remap-or-map-function-in-javascript
 |  9/14/20 | Created guitar and plucking functionality |
 |  9/15/20 | Implemented rolling shutter effect        |
 |  9/16/20 | Added sounds and keyboard support. Also added instructions and some controls |
-|  9/17/20 | Improved styles                           |
+|  9/17/20 | Improved styles & added the all-important favicon |
