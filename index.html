@@ -20,8 +20,7 @@
         <h1>Canvas Guitar</h1>
         <canvas id="guitarCanvas"></canvas>
         <p id="description">
-            Listen to the calming sounds of nature as you strum your guitar.<br>
-            Change your surroundings at the click of a button.
+            Listen to the calming sounds of nature as you strum your guitar.<br> Change your environment with the dropdown menu below.
         </p>
     </section>
 
@@ -93,6 +92,18 @@
             <li>
                 <label for="ambienceVolume">Ambience Volume:</label>
                 <input type="range" min="0" max="100" value="90" name="ambienceVolume" id="ambienceVolume" step="2">
+            </li>
+            <h3>Work in Progress (not implemented)</h3>
+            <li>
+                <label for="instrument">Instrument:</label>
+                <select name="instrument" id="instrument">
+                    <option value="acousticGuitar">Acoustic Guitar</option>
+                    <option value="synth" selected>Synthesizer</option>
+                </select>
+            </li>
+            <li>
+                <label for="instrumentVolume">Instrument Volume:</label>
+                <input type="range" min="0" max="100" value="90" name="instrumentVolume" id="instrumentVolume" step="2">
             </li>
         </ul>
     </section>
