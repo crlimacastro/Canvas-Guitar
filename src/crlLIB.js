@@ -409,6 +409,9 @@
                 canvas.addEventListener("mouseup", e => {
                     mouse.mouseDown = false;
                 });
+                canvas.addEventListener("mouseleave", e => {
+                    mouse.mouseDown = false;
+                });
 
                 return mouse;
             }

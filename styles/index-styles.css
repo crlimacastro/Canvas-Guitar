@@ -1,4 +1,132 @@
+/* * {
+    border: 1px solid white;
+} */
+
 canvas {
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    display: block;
+    margin: auto;
+    box-shadow: 1px 1px 8px rgba(255, 255, 255, 0.5);
     border-radius: 9999px;
+}
+
+html {
+    background-color: black;
+    color: lightgray;
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: inherit;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "main         main" "instructions controls";
+}
+
+body>* {
+    margin: 12px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Cinzel', cursive;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    font-family: 'Fauna One', Serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+#description {
+    display: block;
+    width: fit-content;
+    margin: auto;
+    margin-top: 40px;
+}
+
+#main {
+    grid-area: main;
+}
+
+#instructions {
+    grid-area: instructions;
+    justify-self: end;
+    width: 520px;
+    height: inherit;
+    margin-right: 30px;
+    overflow: auto;
+}
+
+#instructions>ul {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+}
+
+#instructions ul .chunk {
+    margin: 0 8px;
+}
+
+#controls {
+    grid-area: controls;
+    justify-self: start;
+    width: 360px;
+    height: inherit;
+    margin-left: 30px;
+    overflow: auto;
+}
+
+#controls label {
+    font-size: 19px;
+}
+
+#controls select {
+    width: 100px;
+    height: 26px;
+}
+
+#controls input {
+    display: block;
+}
+
+#controls li {
+    margin: 20px 0;
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+ ::-webkit-scrollbar-track {
+    background: rgb(10, 10, 10);
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: #f1f1f1;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media screen and (max-width: 800px) {
+    #instructions {
+        width: 310px;
+    }
+    #instructions>ul {
+        grid-template-columns: 1fr;
+    }
 }
