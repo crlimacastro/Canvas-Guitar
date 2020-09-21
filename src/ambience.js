@@ -57,8 +57,15 @@
 
     function init() {
         let ambienceSelect = document.querySelector("select#ambience");
+        if (localStorage.getItem("ambienceSelect"))
+            ambienceSelect.value = localStorage.getItem("ambienceSelect");
         let ambienceVolume = document.querySelector("input#ambienceVolume");
+        if (localStorage.getItem("ambienceVolume"))
+            ambienceVolume.value = localStorage.getItem("ambienceVolume");
         let canvas = document.querySelector("canvas")
+
+        ambienceState = ambienceSelect.value;
+        ambienceColor = colors[ambienceState];
 
         // Make all ambience sounds loop
         // & default their volume
@@ -102,6 +109,7 @@
                 let dBs = CrlLib.map_range(e.target.value, 0, 100, -100, 0)
                 sounds[sound].volume.value = dBs;
             }
+            localStorage.setItem("ambienceVolume",e.target.value);
         }
 
         Tone.loaded().then(() => {
@@ -115,6 +123,8 @@
                     sounds[previousAmbienceState].stop();
                 if (sounds[ambienceState])
                     sounds[ambienceState].start();
+
+                localStorage.setItem("ambienceSelect", e.target.value);
             };
         });
     }

@@ -73,14 +73,14 @@ https://stackoverflow.com/questions/5649803/remap-or-map-function-in-javascript
 ------------------------------------
 
 ## Log
-|   Date   | Description                               |
-|  :----:  | -----------                               |
-|  9/8/20  | Created repo                              |
-|  9/10/20 | Worked on libraries externally            |
-|  9/13/20 | Added libraries                           |
-|  9/14/20 | Created guitar and plucking functionality |
-|  9/15/20 | Implemented rolling shutter effect        |
-|  9/16/20 | Added sounds and keyboard support. Also added instructions and some controls |
-|  9/17/20 | Improved styles & added the all-important favicon |
-|  9/20/20 | Created background color interpolation & added falling raindrops |
-|  9/21/20 | Added coyote time to fretting
+|   Date   | Description                                                              |
+|  :----:  | -----------                                                              |
+|  9/8/20  | Created repo                                                             |
+|  9/10/20 | Worked on libraries externally                                           |
+|  9/13/20 | Added libraries                                                          |
+|  9/14/20 | Created guitar and plucking functionality                                |
+|  9/15/20 | Implemented rolling shutter effect                                       |
+|  9/16/20 | Added sounds and keyboard support & added instructions and some controls |
+|  9/17/20 | Improved styles & added the all-important favicon                        |
+|  9/20/20 | Created background color interpolation & added falling raindrops         |
+|  9/21/20 | Added coyote time to fretting & saving controls preferences              |
