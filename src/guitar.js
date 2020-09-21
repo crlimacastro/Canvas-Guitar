@@ -1,4 +1,4 @@
-(function () {
+(function() {
     "use strict";
 
     // *************** Consts *****************
@@ -29,11 +29,11 @@
 
 
     const stringState = {
-        RESTING: 0,
-        PLUCKING: 1,
-        WAVING: 2
-    }
-    // ****************************************
+            RESTING: 0,
+            PLUCKING: 1,
+            WAVING: 2
+        }
+        // ****************************************
 
     let instruments;
     let currentInstrument;
@@ -288,8 +288,7 @@
                             currentFret = 0;
                             break;
                     }
-                }
-                else {
+                } else {
                     switch (e.key) {
                         case 'ArrowRight':
                             if (this.strings[2])
@@ -312,8 +311,7 @@
                 // TODO - HANDLE CHORD SELECTION
                 if (currentChord) {
 
-                }
-                else {
+                } else {
                     // Only keyboard numbers
                     // https://stackoverflow.com/questions/13196945/keycode-values-for-numeric-keypad
                     if (e.keyCode >= 48 && e.keyCode <= 57 || e.keyCode == 189 || e.keyCode == 187) {
@@ -374,7 +372,7 @@
                 string.update(mouse);
         }
         draw(ctx) {
-            CtxUtil.fillRing(ctx, ctx.canvas.width / 2, ctx.canvas.height / 2, 150, 1000, "black");
+            // CtxUtil.fillRing(ctx, ctx.canvas.width / 2, ctx.canvas.height / 2, 150, 1000, "black");
             for (const string of this.strings)
                 string.draw(ctx);
         }

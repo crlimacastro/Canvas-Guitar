@@ -1,4 +1,4 @@
-(function () {
+(function() {
     "use strict";
 
     let CrlLib = {
@@ -25,8 +25,7 @@
                         while (oldR - fadeFactor < r)
                             fadeFactor--;
                         oldR -= fadeFactor;
-                    }
-                    else if (oldR < r) {
+                    } else if (oldR < r) {
                         while (oldR + fadeFactor > r)
                             fadeFactor++;
                         oldR += fadeFactor;
@@ -37,8 +36,7 @@
                         while (oldG - fadeFactor < g)
                             fadeFactor--;
                         oldG -= fadeFactor;
-                    }
-                    else if (oldG < g) {
+                    } else if (oldG < g) {
                         while (oldG + fadeFactor > g)
                             fadeFactor--;
                         oldG += fadeFactor;
@@ -49,8 +47,7 @@
                         while (oldB - fadeFactor < b)
                             fadeFactor--;
                         oldB -= fadeFactor;
-                    }
-                    else if (oldB < b) {
+                    } else if (oldB < b) {
                         while (oldB + fadeFactor > b)
                             fadeFactor--;
                         oldB += fadeFactor;
@@ -297,7 +294,6 @@
                 const w = maxX - minX;
                 let h = maxY - minY;
 
-                console.log(minX, maxX, minY, maxY);
                 this.rotateAbout(ctx, minX + w * .5, minY + h * .5, angle);
 
                 ctx.beginPath();
@@ -554,6 +550,10 @@
         // https://stackoverflow.com/questions/5649803/remap-or-map-function-in-javascript
         map_range(value, min1, max1, min2, max2) {
             return min2 + (max2 - min2) * (value - min1) / (max1 - min1);
+        },
+        // Linear interpolation
+        lerp(a, b, t) {
+            return a * (1 - t) + b * t;
         }
     }
 
@@ -565,7 +565,6 @@
         window["Vec2dUtil"] = CrlLib.Vec2dUtil;
         window["Vector2d"] = CrlLib.Vec2dUtil.Vector2d;
         window["Ray2d"] = CrlLib.Vec2dUtil.Ray2d;
-    }
-    else
+    } else
         throw "'window is not defined'";
 })();
