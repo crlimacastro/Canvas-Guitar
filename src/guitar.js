@@ -26,6 +26,7 @@
 
     // Sound consts
     const MAX_NOTE_DURATION = MAX_WAVE_DURATION / 1000;
+    const FRETTING_COYOTE_TIME = 75;
 
 
     const stringState = {
@@ -285,7 +286,7 @@
                         case '0':
                         case '-':
                         case '=':
-                            currentFret = 0;
+                            setTimeout(_ => { currentFret = 0; }, FRETTING_COYOTE_TIME);
                             break;
                     }
                 } else {
