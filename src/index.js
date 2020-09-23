@@ -1,9 +1,11 @@
+// Camilo Lima-Castro
+// IGME-330-02
+// Using Tone.js for audio implementation
 (function() {
     "use strict";
 
-    const width = 600,
+    const width = 400,
         height = 400;
-    const fps = 60;
 
     let canvas;
     let ctx;

@@ -126,7 +126,7 @@
 
                 ambiencePlayer.stop();
                 if (ambienceState != 'none') {
-                    // Async promise of when a new sound in loaded
+                    // Async promise of when a new sound is loaded
                     let loadPromise;
                     if (sounds[ambienceState])
                         loadPromise = ambiencePlayer.load(sounds[ambienceState]);

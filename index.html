@@ -27,54 +27,62 @@
 
     <section id="instructions">
         <ul>
-            <div class="chunk">
+            <li>
                 <h2>Instructions</h2>
-                <li>
-                    <p>Hold the left mouse button and<br> mouse over a string to tug on it.</p>
-                </li>
-                <li>
-                    <p>Pull it far enough or release the<br> left mouse button and it will be plucked.</p>
-                </li>
-            </div>
-            <div class="chunk">
-                <li>
-                    <h3>Keyboard Controls</h3>
-                    <ul id="keyboard-controls">
-                        <div class="chunk">
+                <ul class="chunk">
+                    <li>
+                        <p>Hold the left mouse button and<br> mouse over a string to tug on it.</p>
+                    </li>
+                    <li>
+                        <p>Pull it far enough or release the<br> left mouse button and it will be plucked.</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul class="chunk">
+                    <li>
+                        <h3>Keyboard Controls</h3>
+                        <ul id="keyboard-controls">
                             <li>
-                                <p>Left Arrow - Pluck 1st string</p>
+                                <ul class="chunk">
+                                    <li>
+                                        <p>Left Arrow - Pluck 1st string</p>
+                                    </li>
+                                    <li>
+                                        <p>Down Arrow - Pluck 2nd string</p>
+                                    </li>
+                                    <li>
+                                        <p>Right Arrow - Pluck 3rd string</p>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <p>Down Arrow - Pluck 2nd string</p>
+                                <ul class="chunk">
+                                    <li>
+                                        <p>Numpad 4 - Pluck 4th string</p>
+                                    </li>
+                                    <li>
+                                        <p>Numpad 5 - Pluck 5th string</p>
+                                    </li>
+                                    <li>
+                                        <p>Numpad 6 - Pluck 6th string</p>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <p>Right Arrow - Pluck 3rd string</p>
+                                <ul class="chunk">
+                                    <li>
+                                        <p>Spacebar - Mute</p>
+                                    </li>
+                                    <li>
+                                        <p>Hold 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, or =<br> to press fret numbers 1-12</p>
+                                    </li>
+                                </ul>
                             </li>
-                        </div>
-
-                        <div class="chunk">
-                            <li>
-                                <p>Numpad 4 - Pluck 4th string</p>
-                            </li>
-                            <li>
-                                <p>Numpad 5 - Pluck 5th string</p>
-                            </li>
-                            <li>
-                                <p>Numpad 6 - Pluck 6th string</p>
-                            </li>
-                        </div>
-                        <div class="chunk">
-                            <li>
-                                <p>Spacebar - Mute</p>
-                            </li>
-                            <li>
-                                <p>Hold 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, or =<br> to press fret numbers 1-12</p>
-                            </li>
-                        </div>
-
-                    </ul>
-                </li>
-            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </section>
 
@@ -97,8 +105,8 @@
             <li>
                 <label for="instrument">Instrument:</label>
                 <select name="instrument" id="instrument">
-                    <option value="acousticGuitar">Acoustic Guitar</option>
-                    <option value="synth" selected>Synthesizer</option>
+                    <option value="acousticGuitar" selected>Acoustic Guitar</option>
+                    <option value="synth">Synthesizer</option>
                 </select>
             </li>
             <li>
