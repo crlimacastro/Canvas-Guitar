@@ -40,21 +40,20 @@
         synth: new Tone.PolySynth().toDestination(),
         acousticGuitar: new Tone.Sampler({
             urls: {
-                "E2": "e2.mp3",
-                "A2": "a2.mp3",
-                "D3": "d3.mp3",
-                "G3": "g3.mp3",
-                "B3": "b3.mp3",
-                "E4": "e4.mp3"
+                "E2": "E2.wav",
+                "A3": "A3.wav",
+                "D3": "D3.wav",
+                "D5": "D5.wav",
+                "B3": "B3.wav",
+                "B4": "B4.wav",
+                "E4": "E4.wav"
             },
-            release: 1,
             baseUrl: "../sounds/acousticGuitar/",
         }).toDestination(),
     });
     let currentInstrument;
 
     let currentFret = 0;
-    let currentChord;
 
     let NoteConverter = {
         getNoteHalfStepUp(note) {
@@ -298,63 +297,61 @@
                             if (this.strings[0])
                                 this.strings[0].pluck(MAX_PLUCK_DISTANCE);
                             break;
+                        case ' ':
+                            instruments[currentInstrument].volume.value = volum;
                     }
                 }
 
             });
 
             document.addEventListener('keydown', e => {
-                // TODO - HANDLE CHORD SELECTION
-                if (currentChord) {
-
-                } else {
-                    // Only keyboard numbers
-                    // https://stackoverflow.com/questions/13196945/keycode-values-for-numeric-keypad
-                    if (e.keyCode >= 48 && e.keyCode <= 57 || e.keyCode == 189 || e.keyCode == 187) {
-                        switch (e.key) {
-                            case '1':
-                                currentFret = 1;
-                                break;
-                            case '2':
-                                currentFret = 2;
-                                break;
-                            case '3':
-                                currentFret = 3;
-                                break;
-                            case '4':
-                                currentFret = 4;
-                                break;
-                            case '5':
-                                currentFret = 5;
-                                break;
-                            case '6':
-                                currentFret = 6;
-                                break;
-                            case '7':
-                                currentFret = 7;
-                                break;
-                            case '8':
-                                currentFret = 8;
-                                break;
-                            case '9':
-                                currentFret = 9;
-                                break;
-                            case '0':
-                                currentFret = 10;
-                                break;
-                            case '-':
-                                currentFret = 11;
-                                break;
-                            case '=':
-                                currentFret = 12;
-                                break;
-                        }
+                // Only keyboard numbers
+                // https://stackoverflow.com/questions/13196945/keycode-values-for-numeric-keypad
+                if (e.keyCode >= 48 && e.keyCode <= 57 || e.keyCode == 189 || e.keyCode == 187) {
+                    switch (e.key) {
+                        case '1':
+                            currentFret = 1;
+                            break;
+                        case '2':
+                            currentFret = 2;
+                            break;
+                        case '3':
+                            currentFret = 3;
+                            break;
+                        case '4':
+                            currentFret = 4;
+                            break;
+                        case '5':
+                            currentFret = 5;
+                            break;
+                        case '6':
+                            currentFret = 6;
+                            break;
+                        case '7':
+                            currentFret = 7;
+                            break;
+                        case '8':
+                            currentFret = 8;
+                            break;
+                        case '9':
+                            currentFret = 9;
+                            break;
+                        case '0':
+                            currentFret = 10;
+                            break;
+                        case '-':
+                            currentFret = 11;
+                            break;
+                        case '=':
+                            currentFret = 12;
+                            break;
                     }
                 }
 
                 if (e.key == ' ') {
                     for (const string of this.strings) {
                         string.mute();
+                        instruments[currentInstrument].volume.value = Number.NEGATIVE_INFINITY;
                         string.state = stringState.RESTING;
                     }
                 }
@@ -398,6 +395,7 @@
         };
 
         instrumentSelect.onchange = e => {
+            currentInstrument = e.target.value;
             localStorage.setItem("instrumentSelect", e.target.value);
         };
     }
