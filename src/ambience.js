@@ -12,10 +12,11 @@
         none: "#ffffff"
     });
 
+    const ambiencePlayer = new Tone.Player().toDestination();
     const sounds = Object.freeze({
-        morning: new Tone.Player("../sounds/morning.mp3").toDestination(),
-        evening: new Tone.Player("../sounds/night.mp3").toDestination(),
-        rain: new Tone.Player("../sounds/rain.mp3").toDestination()
+        morning: "../sounds/morning.mp3",
+        evening: "../sounds/night.mp3",
+        rain: "../sounds/rain.mp3"
     });
 
     let ambienceState = "morning";
@@ -60,12 +61,9 @@
         let ambienceVolume = document.querySelector("input#ambienceVolume");
         let canvas = document.querySelector("canvas")
 
-        // Make all ambience sounds loop
-        // & default their volume
-        for (const sound in sounds) {
-            sounds[sound].loop = true;
-            sounds[sound].volume.value = CrlLib.map_range(ambienceVolume.value, 0, 100, -100, 0);
-        }
+        ambiencePlayer.loop = true;
+        ambiencePlayer.volume.value = volumeToDB(ambienceVolume.value);
+        ambiencePlayer.load(sounds[ambienceState]);
 
         // Populate raindrops object pool
         for (let i = 0; i < RAIN_COUNT; i++) {
@@ -97,24 +95,16 @@
         }
 
         // Events
-        ambienceVolume.oninput = e => {
-            for (const sound in sounds) {
-                let dBs = CrlLib.map_range(e.target.value, 0, 100, -100, 0)
-                sounds[sound].volume.value = dBs;
-            }
-        }
+        ambienceVolume.oninput = e => { ambiencePlayer.volume.value = volumeToDB(ambienceVolume.value) };
 
         Tone.loaded().then(() => {
-            sounds[ambienceState].start();
+            ambiencePlayer.start();
 
             ambienceSelect.onchange = e => {
-                previousAmbienceState = ambienceState;
                 ambienceState = e.target.value;
-
-                if (sounds[previousAmbienceState])
-                    sounds[previousAmbienceState].stop();
                 if (sounds[ambienceState])
-                    sounds[ambienceState].start();
+                    ambiencePlayer.load(sounds[ambienceState]);
+                ambiencePlayer.restart();
             };
         });
     }
@@ -136,6 +126,10 @@
             g: parseInt(result[2], 16),
             b: parseInt(result[3], 16)
         } : null;
+    }
+
+    function volumeToDB(volume) {
+        return 20 * Math.log10(volume / 100);
     }
 
     if (window) {
