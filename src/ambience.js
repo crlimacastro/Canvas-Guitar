@@ -58,7 +58,11 @@
 
     function init() {
         let ambienceSelect = document.querySelector("select#ambience");
+        if (localStorage.getItem("ambienceSelect"))
+            ambienceSelect.value = localStorage.getItem("ambienceSelect");
         let ambienceVolume = document.querySelector("input#ambienceVolume");
+        if (localStorage.getItem("ambienceVolume"))
+            ambienceVolume.value = localStorage.getItem("ambienceVolume");
         let canvas = document.querySelector("canvas")
 
         ambiencePlayer.loop = true;
@@ -105,6 +109,8 @@
                 if (sounds[ambienceState])
                     ambiencePlayer.load(sounds[ambienceState]);
                 ambiencePlayer.restart();
+
+                localStorage.setItem("ambienceSelect", e.target.value);
             };
         });
     }
