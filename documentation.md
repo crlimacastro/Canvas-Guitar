@@ -19,6 +19,7 @@
 ------------------------------------
 
 ## Discussion Post
+
 I don't think periodic functions are going to get a lot of love so I want to make my Project 1 expand on that. I am planning on simulating guitar strings' "rolling shutter effect", the weird wobble they get when recorded on camera. I am going to draw a guitar on the canvas with basic shapes and have the user be able to "pluck" the strings by holding down the left mouse button. The frequency of the oscillations will be based on how hard the user plucks the string (how far away they release it). The user will also be able to "strum" the guitar by swiping the mouse through all the strings with the left mouse button down.
 
 Planning on adding sound as a stretch goal and for the user to be able to strum different chords.
@@ -50,6 +51,7 @@ Planning on adding sound as a stretch goal and for the user to be able to strum 
 ------------------------------------
 
 ## Citations
+
 Tone.js (External sound library) - 
 https://tonejs.github.io/
 
@@ -64,7 +66,8 @@ https://freesound.org/people/InspectorJ/sounds/401276/
 
 Range Mapping Function - 
 https://stackoverflow.com/questions/5649803/remap-or-map-function-in-javascript
-```javascript
+
+``` javascript
         map_range(value, min1, max1, min2, max2) {
             return min2 + (max2 - min2) * (value - min1) / (max1 - min1);
         }
@@ -73,14 +76,16 @@ https://stackoverflow.com/questions/5649803/remap-or-map-function-in-javascript
 ------------------------------------
 
 ## Log
-|   Date   | Description                                                              |
-|  :----:  | -----------                                                              |
-|  9/8/20  | Created repo                                                             |
-|  9/10/20 | Worked on libraries externally                                           |
-|  9/13/20 | Added libraries                                                          |
-|  9/14/20 | Created guitar and plucking functionality                                |
-|  9/15/20 | Implemented rolling shutter effect                                       |
-|  9/16/20 | Added sounds and keyboard support & added instructions and some controls |
-|  9/17/20 | Improved styles & added the all-important favicon                        |
-|  9/20/20 | Created background color interpolation & added falling raindrops         |
-|  9/21/20 | Added coyote time to fretting & saving controls preferences              |
+
+|  Date   | Description                                                              |
+|:-------:|--------------------------------------------------------------------------|
+| 9/8/20  | Created repo                                                             |
+| 9/10/20 | Worked on libraries externally                                           |
+| 9/13/20 | Added libraries                                                          |
+| 9/14/20 | Created guitar and plucking functionality                                |
+| 9/15/20 | Implemented rolling shutter effect                                       |
+| 9/16/20 | Added sounds and keyboard support & added instructions and some controls |
+| 9/17/20 | Improved styles & added the all-important favicon                        |
+| 9/20/20 | Created background color interpolation & added falling raindrops         |
+| 9/21/20 | Added coyote time to fretting & saving controls preferences              |
+| 9/22/20 | Fixed volume sliders & made ambience audios fade between each other      |

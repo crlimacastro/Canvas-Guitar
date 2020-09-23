@@ -2,8 +2,12 @@
     "use strict";
 
     const RAIN_COUNT = 100;
+    const RAIN_LENGTH_MIN = 40;
+    const RAIN_LENGTH_MAX = 100;
     // By how much in each direction will the rain rotate
     const RAIN_ANGLE = Math.PI / 6;
+    const RAIN_VEL_MIN = 10;
+    const RAIN_VEL_MAX = 50;
 
     const colors = Object.freeze({
         morning: "#d7e8fd",
@@ -13,6 +17,8 @@
     });
 
     const ambiencePlayer = new Tone.Player().toDestination();
+    const AMBIENCE_FADE_IN = 1;
+    const AMBIENCE_FADE_OUT = 1;
     const sounds = Object.freeze({
         morning: "../sounds/morning.mp3",
         evening: "../sounds/night.mp3",
@@ -20,7 +26,6 @@
     });
 
     let ambienceState = "morning";
-    let previousAmbienceState;
     let ambienceColor = colors[ambienceState];
 
     let rainPool = [];
@@ -65,22 +70,28 @@
             ambienceVolume.value = localStorage.getItem("ambienceVolume");
         let canvas = document.querySelector("canvas")
 
+        ambienceState = ambienceSelect.value;
+        ambienceColor = colors[ambienceState];
+
+        ambiencePlayer.fadeIn = AMBIENCE_FADE_IN;
+        ambiencePlayer.fadeOut = AMBIENCE_FADE_OUT;
         ambiencePlayer.loop = true;
         ambiencePlayer.volume.value = volumeToDB(ambienceVolume.value);
-        ambiencePlayer.load(sounds[ambienceState]);
+        if (ambienceState != 'none')
+            ambiencePlayer.load(sounds[ambienceState]);
 
         // Populate raindrops object pool
         for (let i = 0; i < RAIN_COUNT; i++) {
-            let direction = Vector2d.getRotated(new Vector2d(0, RandUtil.getRandom(-100, -40)), RandUtil.getRandom(-RAIN_ANGLE, RAIN_ANGLE));
+            let direction = Vector2d.getRotated(new Vector2d(0, RandUtil.getRandom(-RAIN_LENGTH_MAX, -RAIN_LENGTH_MIN)), RandUtil.getRandom(-RAIN_ANGLE, RAIN_ANGLE));
 
             rainPool.push({
                 ray: new Ray2d(
                     // Position
-                    new Vector2d(RandUtil.getRandom(0, canvas.width), RandUtil.getRandom(0, 50)),
+                    new Vector2d(RandUtil.getRandom(0, canvas.width), RandUtil.getRandom(0, RAIN_LENGTH_MIN)),
                     // Direction
                     direction
                 ),
-                vel: Vector2d.getScaled(direction, RandUtil.getRandom(10, 50)),
+                vel: Vector2d.getScaled(direction, RandUtil.getRandom(RAIN_VEL_MIN, RAIN_VEL_MAX)),
                 update(dt) {
                     this.ray.pos.x += this.vel.x * dt;
                     this.ray.pos.y -= this.vel.y * dt;
@@ -88,8 +99,8 @@
                     if (this.ray.pos.y > canvas.height) {
                         this.ray.pos.x = RandUtil.getRandom(0, canvas.width);
                         this.ray.pos.y = 0;
-                        this.ray.dir = Vector2d.getRotated(new Vector2d(0, RandUtil.getRandom(-100, -40)), RandUtil.getRandom(-RAIN_ANGLE, RAIN_ANGLE));
-                        this.vel = Vector2d.getScaled(this.ray.dir, 10, 50);
+                        this.ray.dir = Vector2d.getRotated(new Vector2d(0, RandUtil.getRandom(-RAIN_LENGTH_MAX, -RAIN_LENGTH_MIN)), RandUtil.getRandom(-RAIN_ANGLE, RAIN_ANGLE));
+                        this.vel = Vector2d.getScaled(this.ray.dir, RAIN_VEL_MIN, RAIN_VEL_MAX);
                     }
                 },
                 draw(ctx) {
@@ -102,14 +113,16 @@
         ambienceVolume.oninput = e => { ambiencePlayer.volume.value = volumeToDB(ambienceVolume.value) };
 
         Tone.loaded().then(() => {
-            ambiencePlayer.start();
+            if (ambienceState != 'none')
+                ambiencePlayer.start();
 
             ambienceSelect.onchange = e => {
                 ambienceState = e.target.value;
+                let loadPromise;
                 if (sounds[ambienceState])
-                    ambiencePlayer.load(sounds[ambienceState]);
-                ambiencePlayer.restart();
-
+                    loadPromise = ambiencePlayer.load(sounds[ambienceState]);
+                if (loadPromise)
+                    loadPromise.then(_ => { ambiencePlayer.restart() });
                 localStorage.setItem("ambienceSelect", e.target.value);
             };
         });
