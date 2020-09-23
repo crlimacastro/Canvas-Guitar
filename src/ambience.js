@@ -1,14 +1,6 @@
 (function() {
     "use strict";
 
-    const RAIN_COUNT = 100;
-    const RAIN_LENGTH_MIN = 40;
-    const RAIN_LENGTH_MAX = 100;
-    // By how much in each direction will the rain rotate
-    const RAIN_ANGLE = Math.PI / 6;
-    const RAIN_VEL_MIN = 10;
-    const RAIN_VEL_MAX = 50;
-
     const colors = Object.freeze({
         morning: "#d7e8fd",
         evening: "#392033",
@@ -16,14 +8,24 @@
         none: "#ffffff"
     });
 
-    const ambiencePlayer = new Tone.Player().toDestination();
-    const AMBIENCE_FADE_IN = 1;
-    const AMBIENCE_FADE_OUT = 1;
     const sounds = Object.freeze({
         morning: "../sounds/morning.mp3",
         evening: "../sounds/night.mp3",
         rain: "../sounds/rain.mp3"
     });
+
+    const RAIN_COUNT = 120;
+    const RAIN_LENGTH_MIN = 40;
+    const RAIN_LENGTH_MAX = 100;
+    // By how much in each direction will the rain rotate
+    const RAIN_ANGLE = Math.PI / 6;
+    const RAIN_VEL_MIN = 20;
+    const RAIN_VEL_MAX = 60;
+
+    const ambiencePlayer = new Tone.Player().toDestination();
+    // In seconds
+    const AMBIENCE_FADE_IN = 1;
+    const AMBIENCE_FADE_OUT = 1;
 
     let ambienceState = "morning";
     let ambienceColor = colors[ambienceState];
@@ -76,7 +78,7 @@
         ambiencePlayer.fadeIn = AMBIENCE_FADE_IN;
         ambiencePlayer.fadeOut = AMBIENCE_FADE_OUT;
         ambiencePlayer.loop = true;
-        ambiencePlayer.volume.value = volumeToDB(ambienceVolume.value);
+        ambiencePlayer.volume.value = CrlLib.volumeToDB(ambienceVolume.value);
         if (ambienceState != 'none')
             ambiencePlayer.load(sounds[ambienceState]);
 
@@ -110,7 +112,10 @@
         }
 
         // Events
-        ambienceVolume.oninput = e => { ambiencePlayer.volume.value = volumeToDB(ambienceVolume.value) };
+        ambienceVolume.oninput = e => {
+            ambiencePlayer.volume.value = CrlLib.volumeToDB(e.target.value);
+            localStorage.setItem("ambienceVolume", e.target.value);
+        };
 
         Tone.loaded().then(() => {
             if (ambienceState != 'none')
@@ -118,11 +123,19 @@
 
             ambienceSelect.onchange = e => {
                 ambienceState = e.target.value;
-                let loadPromise;
-                if (sounds[ambienceState])
-                    loadPromise = ambiencePlayer.load(sounds[ambienceState]);
-                if (loadPromise)
-                    loadPromise.then(_ => { ambiencePlayer.restart() });
+
+                ambiencePlayer.stop();
+                if (ambienceState != 'none') {
+                    // Async promise of when a new sound in loaded
+                    let loadPromise;
+                    if (sounds[ambienceState])
+                        loadPromise = ambiencePlayer.load(sounds[ambienceState]);
+                    // Restart player when a new sound has been loaded
+                    if (loadPromise)
+                        loadPromise.then(_ => { ambiencePlayer.start() });
+                }
+
+                // Update cookies
                 localStorage.setItem("ambienceSelect", e.target.value);
             };
         });
@@ -145,10 +158,6 @@
             g: parseInt(result[2], 16),
             b: parseInt(result[3], 16)
         } : null;
-    }
-
-    function volumeToDB(volume) {
-        return 20 * Math.log10(volume / 100);
     }
 
     if (window) {

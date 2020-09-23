@@ -50,6 +50,10 @@ Planning on adding sound as a stretch goal and for the user to be able to strum 
 
 ------------------------------------
 
+## Self-Assessment
+
+------------------------------------
+
 ## Citations
 
 Tone.js (External sound library) - 

@@ -554,6 +554,9 @@
         // Linear interpolation
         lerp(a, b, t) {
             return a * (1 - t) + b * t;
+        },
+        volumeToDB(volume) {
+            return 20 * Math.log10(volume / 100);
         }
     }
 

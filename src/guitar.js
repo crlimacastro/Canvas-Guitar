@@ -36,27 +36,22 @@
         }
         // ****************************************
 
-    let instruments;
-    let currentInstrument;
-    Tone.loaded().then(_ => {
-        instruments = Object.freeze({
-            synth: new Tone.PolySynth().toDestination(),
-            // acousticGuitar: new Tone.Sampler({
-            //     urls: {
-            //         "E2": "e2.mp3",
-            //         "A2": "a2.mp3",
-            //         "D3": "d3.mp3",
-            //         "G3": "g3.mp3",
-            //         "B3": "b3.mp3",
-            //         "E4": "e4.mp3"
-            //     },
-            //     release: 1,
-            //     baseUrl: "../sounds/acousticGuitar/",
-            // }).toDestination(),
-        });
-
-        currentInstrument = instruments.synth;
+    const instruments = Object.freeze({
+        synth: new Tone.PolySynth().toDestination(),
+        acousticGuitar: new Tone.Sampler({
+            urls: {
+                "E2": "e2.mp3",
+                "A2": "a2.mp3",
+                "D3": "d3.mp3",
+                "G3": "g3.mp3",
+                "B3": "b3.mp3",
+                "E4": "e4.mp3"
+            },
+            release: 1,
+            baseUrl: "../sounds/acousticGuitar/",
+        }).toDestination(),
     });
+    let currentInstrument;
 
     let currentFret = 0;
     let currentChord;
@@ -200,7 +195,7 @@
             this.mute();
             let currentNote = this.openNote;
             currentNote = NoteConverter.getPitchedUpBy(currentNote, currentFret);
-            currentInstrument.triggerAttackRelease(currentNote, CrlLib.map_range(distance, 0, MAX_PLUCK_DISTANCE, 0, MAX_NOTE_DURATION));
+            instruments[currentInstrument].triggerAttackRelease(currentNote, CrlLib.map_range(distance, 0, MAX_PLUCK_DISTANCE, 0, MAX_NOTE_DURATION));
             this.previousNote = currentNote;
 
             // Go back to rest once string is done ringing
@@ -210,7 +205,7 @@
             this.waveTimeoutId = setTimeout(_ => { this.state = stringState.RESTING }, duration);
         }
         mute() {
-            currentInstrument.triggerRelease(this.previousNote, Tone.now());
+            instruments[currentInstrument].triggerRelease(this.previousNote, Tone.now());
         }
         draw(ctx) {
             // String Drawing Finite State Machine
@@ -377,6 +372,34 @@
             for (const string of this.strings)
                 string.draw(ctx);
         }
+    }
+
+    window.addEventListener("load", init);
+
+    function init() {
+        let instrumentSelect = document.querySelector("select#instrument");
+        if (localStorage.getItem("instrumentSelect"))
+            instrumentSelect.value = localStorage.getItem("instrumentSelect");
+        let instrumentVolume = document.querySelector("input#instrumentVolume");
+        if (localStorage.getItem("instrumentVolume"))
+            instrumentVolume.value = localStorage.getItem("instrumentVolume");
+
+        currentInstrument = instrumentSelect.value;
+        for (const instrument in instruments)
+            instruments[instrument].volume.value = CrlLib.volumeToDB(instrumentVolume.value);
+
+
+        // Events
+        instrumentVolume.oninput = e => {
+            for (const instrument in instruments) {
+                instruments[instrument].volume.value = CrlLib.volumeToDB(e.target.value);
+                localStorage.setItem("instrumentVolume", e.target.value);
+            }
+        };
+
+        instrumentSelect.onchange = e => {
+            localStorage.setItem("instrumentSelect", e.target.value);
+        };
     }
 
     if (window)
