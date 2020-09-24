@@ -28,7 +28,6 @@
     const AMBIENCE_FADE_OUT = 1;
 
     let ambienceState = "morning";
-    let ambienceColor = colors[ambienceState];
 
     let rainPool = [];
 
@@ -63,7 +62,6 @@
         let canvas = document.querySelector("canvas")
 
         ambienceState = ambienceSelect.value;
-        ambienceColor = colors[ambienceState];
 
         ambiencePlayer.fadeIn = AMBIENCE_FADE_IN;
         ambiencePlayer.fadeOut = AMBIENCE_FADE_OUT;
