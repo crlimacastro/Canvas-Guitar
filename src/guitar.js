@@ -48,7 +48,7 @@
                 "B4": "B4.wav",
                 "E4": "E4.wav"
             },
-            baseUrl: "sounds/acousticGuitar/",
+            baseUrl: "sounds/acousticGuitar/"
         }).toDestination(),
     });
     let currentInstrument;
@@ -193,7 +193,6 @@
 
             // Sound logic
             this.mute();
-            instruments[currentInstrument].toDestination()
             let currentNote = this.openNote;
             currentNote = NoteConverter.getPitchedUpBy(currentNote, currentFret);
             instruments[currentInstrument].triggerAttackRelease(currentNote, CrlLib.map_range(distance, 0, MAX_PLUCK_DISTANCE, 0, MAX_NOTE_DURATION));
@@ -207,7 +206,6 @@
         }
         mute() {
             instruments[currentInstrument].triggerRelease(this.previousNote, Tone.now());
-            instruments[currentInstrument].disconnect();
         }
         draw(ctx) {
             // String Drawing Finite State Machine
