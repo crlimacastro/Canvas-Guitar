@@ -346,13 +346,6 @@
                             break;
                     }
                 }
-
-                if (e.key == ' ') {
-                    for (const string of this.strings) {
-                        string.mute();
-                        string.state = stringState.RESTING;
-                    }
-                }
             });
         }
         getStringCount() {
