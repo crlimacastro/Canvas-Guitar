@@ -54,7 +54,7 @@ All known errors have been taken care of throughout development and a strong vis
 
 ### C. Media
 
-![CSS Validated](http://jigsaw.w3.org/css-validator/images/vcss-blue)
+![](http://jigsaw.w3.org/css-validator/images/vcss-blue) CSS Validated
 
 #### Embedded Fonts
 
@@ -93,7 +93,7 @@ The pacing I took throughout the project really worked well for me. I had a few 
 
 ### Wrong
 
-Because I took on the challenge of learning and implementing an external library(Tone.js) during the timespan of the project, a few bugs and errors came up as I was developing the app. Through extensive testing(both by me and external testing) I managed to fix and polish all the errors encountered.
+Because I took on the challenge of learning and implementing an external library(Tone.js) during the timespan of the project, a lot of bugs and errors came up as I was developing the app. Through extensive testing(both by me and external testing) I managed to fix and polish all the errors encountered.
 
 The rest of the things I wish would have gonne better for the project can be found in the following Wishlist of Features section [below](#Wishlist-of-Features).
 

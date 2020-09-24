@@ -52,6 +52,7 @@
         }).toDestination(),
     });
     let currentInstrument;
+    let instrumentVolume;
 
     let currentFret = 0;
 
@@ -192,6 +193,7 @@
 
             // Sound logic
             this.mute();
+            instruments[currentInstrument].toDestination()
             let currentNote = this.openNote;
             currentNote = NoteConverter.getPitchedUpBy(currentNote, currentFret);
             instruments[currentInstrument].triggerAttackRelease(currentNote, CrlLib.map_range(distance, 0, MAX_PLUCK_DISTANCE, 0, MAX_NOTE_DURATION));
@@ -205,6 +207,7 @@
         }
         mute() {
             instruments[currentInstrument].triggerRelease(this.previousNote, Tone.now());
+            instruments[currentInstrument].disconnect();
         }
         draw(ctx) {
             // String Drawing Finite State Machine
@@ -297,8 +300,6 @@
                             if (this.strings[0])
                                 this.strings[0].pluck(MAX_PLUCK_DISTANCE);
                             break;
-                        case ' ':
-                            instruments[currentInstrument].volume.value = volum;
                     }
                 }
 
@@ -351,7 +352,6 @@
                 if (e.key == ' ') {
                     for (const string of this.strings) {
                         string.mute();
-                        instruments[currentInstrument].volume.value = Number.NEGATIVE_INFINITY;
                         string.state = stringState.RESTING;
                     }
                 }
@@ -365,7 +365,6 @@
                 string.update(mouse);
         }
         draw(ctx) {
-            // CtxUtil.fillRing(ctx, ctx.canvas.width / 2, ctx.canvas.height / 2, 150, 1000, "black");
             for (const string of this.strings)
                 string.draw(ctx);
         }
@@ -377,7 +376,7 @@
         let instrumentSelect = document.querySelector("select#instrument");
         if (localStorage.getItem("instrumentSelect"))
             instrumentSelect.value = localStorage.getItem("instrumentSelect");
-        let instrumentVolume = document.querySelector("input#instrumentVolume");
+        instrumentVolume = document.querySelector("input#instrumentVolume");
         if (localStorage.getItem("instrumentVolume"))
             instrumentVolume.value = localStorage.getItem("instrumentVolume");
 

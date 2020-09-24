@@ -34,16 +34,6 @@
 
     let Ambience = {
         update(dt) {
-            // Lerp background color
-            let currentRGB = hexToRgb(ambienceColor);
-            const targetRGB = hexToRgb(colors[ambienceState]);
-            if (currentRGB.r != targetRGB.r && currentRGB.g != targetRGB.g && currentRGB.b != targetRGB.b) {
-                currentRGB.r = CrlLib.lerp(currentRGB.r, targetRGB.r, dt);
-                currentRGB.g = CrlLib.lerp(currentRGB.g, targetRGB.g, dt);
-                currentRGB.b = CrlLib.lerp(currentRGB.b, targetRGB.b, dt);
-                ambienceColor = rgbToHex(Math.trunc(currentRGB.r), Math.trunc(currentRGB.g), Math.trunc(currentRGB.b));
-            }
-
             // Update raindrops
             if (ambienceState == 'rain') {
                 for (const raindrop of rainPool) {
@@ -52,7 +42,7 @@
             }
         },
         draw(ctx) {
-            CtxUtil.fillBackground(ctx, ambienceColor);
+            ctx.canvas.style.backgroundColor = colors[ambienceState];
             if (ambienceState == 'rain') {
                 for (const raindrop of rainPool) {
                     raindrop.draw(ctx);
