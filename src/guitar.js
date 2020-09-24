@@ -48,7 +48,7 @@
                 "B4": "B4.wav",
                 "E4": "E4.wav"
             },
-            baseUrl: "../sounds/acousticGuitar/",
+            baseUrl: "sounds/acousticGuitar/",
         }).toDestination(),
     });
     let currentInstrument;

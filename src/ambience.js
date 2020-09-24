@@ -9,9 +9,9 @@
     });
 
     const sounds = Object.freeze({
-        morning: "../sounds/morning.mp3",
-        evening: "../sounds/night.mp3",
-        rain: "../sounds/rain.mp3"
+        morning: "sounds/morning.mp3",
+        evening: "sounds/night.mp3",
+        rain: "sounds/rain.mp3"
     });
 
     const RAIN_COUNT = 120;
