@@ -16,8 +16,6 @@ My portfolio: <https://crlimacastro.github.io/>
 
 [Wishlist of Features](#Wishlist-of-Features)
 
-[Self Assessment](#Self-Assessment)
-
 [Citations](#Citations)
 
 [Log](#Log)
@@ -55,8 +53,6 @@ To improve usability, a “Coyote Time” window has been added to the release o
 All known errors have been taken care of throughout development and a strong visual aesthetic was created from very early on in development.
 
 ### C. Media
-
-![](http://jigsaw.w3.org/css-validator/images/vcss-blue) CSS Validated
 
 #### Embedded Fonts
 
@@ -106,14 +102,6 @@ The only feature that ended up not being implemented was the ability to strum ch
 2. (Complicated Controls/Button Combinations) Adding this feature would deal a massive blow to the minimalist philosophy the app and the site in general is going for. Asking the user to study huge charts of different chords and their combinations on the keyboard is not the most usable approach. Not to mention some of these combinations would(at the end of the day) even be difficult to pull off with one hand. Such as Am7 which would require holding the 'A' key, Alt, and the number 7 at the top.
 
 Another aspect that could have been improved is the scalability of the page itself. I could have made the canvas elements use a more "responsive design" type of sizing and made it look nice on smaller screens and especially in portrait oriented-screens(like smartphones). As it stands, the site is not optimized for smartphone usage.
-
-------------------------------------
-
-## Self-Assessment
-
-The project came out very close to the way I envisioned it. I have polished it to look as presentable as possible, and it goes above and beyond the required scope of Project 1 in several aspects. I have checked it over and refined it several times for any possible deductions from the rubric. I believe this project is a good marker of the type of applications I can build right now with my current accumulated knowledge, my current experience, and my full effort. 
-
-**Grade** - 100%
 
 ------------------------------------
 
