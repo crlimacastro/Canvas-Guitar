@@ -1,4 +1,4 @@
-Canvas Guitar
+# Canvas Guitar
 
 Link to Application: <https://people.rit.edu/crl3554/330/project1>
 
