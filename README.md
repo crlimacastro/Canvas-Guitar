@@ -2,8 +2,6 @@
 
 Link to Application: <https://people.rit.edu/crl3554/330/project1>
 
-Video Reel: <https://youtu.be/MZRs5CO1uPc>
-
 My portfolio: <https://crlimacastro.github.io/>
 
 # Documentation
