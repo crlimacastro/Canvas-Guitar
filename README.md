@@ -24,14 +24,6 @@ https://freesound.org/people/InspectorJ/sounds/401276/
 
 Acoustic Guitar Sample Pack by BIOCHRON - https://soundpacks.com/free-sound-packs/acoustic-guitar-sample-pack/
 
-Range Mapping Function - 
-https://stackoverflow.com/questions/5649803/remap-or-map-function-in-javascript
-``` javascript
-        map_range(value, min1, max1, min2, max2) {
-            return min2 + (max2 - min2) * (value - min1) / (max1 - min1);
-        }
-```
-
 # Log
 
 |  Date   | Description                                                                                          |
