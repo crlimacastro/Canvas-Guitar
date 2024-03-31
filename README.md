@@ -2,6 +2,8 @@
 
 Link to the application: <https://people.rit.edu/crl3554/330/project1>
 
+YouTube demo: <https://www.youtube.com/watch?v=78dE5XtR1J8>
+
 ![preview](preview.gif)
 
 # Embedded Fonts
