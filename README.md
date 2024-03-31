@@ -2,6 +2,8 @@
 
 Link to the application: <https://people.rit.edu/crl3554/330/project1>
 
+![preview](preview.gif)
+
 # Embedded Fonts
 
 [Cinzel](https://fonts.google.com/specimen/Cinzel) by Natanael Gama
